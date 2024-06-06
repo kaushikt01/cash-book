@@ -8,7 +8,7 @@ const Navbar = () => {
           <Link className="text-white hover:text-gray-400" to="/home">Home</Link>
         </li>
         <li className="flex gap-8">
-          <Link className="text-white hover:text-gray-400" to="/">Daily Report</Link>
+          <Link className="text-white hover:text-gray-400" to="/">Tikdamies report</Link>
           <Link className="text-white hover:text-gray-400" to="/weekly-report">Weekly Report</Link>
           <Link className="text-white hover:text-gray-400" to="/monthly-report">Monthly Report</Link>
         </li>
