@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
-const AddExpense = ({ isOpen, onClose }) => {
+const AddExpense = ({ isOpen, onClose, onAddExpense }) => {
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
     const [transactionType, setTransactionType] = useState('debit');
+    const [date, setDate] = useState(new Date()); // Default to current date
 
     const handleSubmit = () => {
-        console.log('Amount:', amount);
-        console.log('Description:', description);
-        console.log('Transaction Type:', transactionType);
+        const expense = {
+            amount,
+            description,
+            transactionType,
+            date: date.toLocaleDateString(), // format: DD/MM/YYYY
+        };
+        onAddExpense(expense);
         onClose();
         setAmount('');
         setDescription('');
         setTransactionType('debit');
+        setDate(new Date()); // Reset date to current date
     };
 
     if (!isOpen) {
@@ -25,13 +33,13 @@ const AddExpense = ({ isOpen, onClose }) => {
                 <h2 className="text-2xl mb-4">Add Expense</h2>
                 <div className="flex mb-4">
                     <button
-                        className={`flex-1 py-2 ${transactionType === 'debit' ? 'rounded bg-gray-400 text-white' : 'rounded bg-gray-200 text-gray-700'} rounded-lg-l`}
+                        className={`flex-1 py-2 ${transactionType === 'debit' ? 'bg-gray-400 text-white' : 'bg-gray-200 text-gray-700'} rounded-l-lg`}
                         onClick={() => setTransactionType('debit')}
                     >
                         Debit
                     </button>
                     <button
-                        className={`flex-1 py-2 ${transactionType === 'credit' ? 'rounded bg-gray-400 text-white' : 'rounded bg-gray-200 text-gray-700'} rounded-lg-r`}
+                        className={`flex-1 py-2 ${transactionType === 'credit' ? 'bg-gray-400 text-white' : 'bg-gray-200 text-gray-700'} rounded-r-lg`}
                         onClick={() => setTransactionType('credit')}
                     >
                         Credit
@@ -55,6 +63,15 @@ const AddExpense = ({ isOpen, onClose }) => {
                         className="w-full p-2 border border-gray-300 rounded-lg"
                     />
                 </div>
+                <div className="mb-4">
+                    <label className="block mb-1">Date</label>
+                    <DatePicker
+                        selected={date}
+                        onChange={(date) => setDate(date)}
+                        dateFormat="dd/MM/yyyy"
+                        className="w-full p-2 border border-gray-300 rounded-lg"
+                    />
+                </div>
                 <div className="flex justify-end">
                     <button className="bg-gray-800 text-white py-2 font-md px-4 rounded-lg mr-2" onClick={handleSubmit}>
                         Submit
@@ -62,7 +79,6 @@ const AddExpense = ({ isOpen, onClose }) => {
                     <button className="border border-black font-md text-black py-2 px-4 rounded-lg" onClick={onClose}>
                         Close
                     </button>
-
                 </div>
             </div>
         </div>
