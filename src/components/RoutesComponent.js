@@ -8,8 +8,8 @@ import MonthlyReport from './reports/MonthlyReport';
 const RoutesComponent = () => {
     return (
         <Routes>
-            <Route path="/" element={<DailyReport />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/daily-report" element={<DailyReport />} />
             <Route path="/weekly-report" element={<WeeklyReport />} />
             <Route path="/monthly-report" element={<MonthlyReport />} />
         </Routes>
