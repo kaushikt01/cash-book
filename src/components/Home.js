@@ -45,7 +45,7 @@ const Home = () => {
                 const hasCredit = dateExpenses.some(expense => expense.transactionType === 'credit');
 
                 return (
-                    <div key={date} className="py-4">
+                    <div key={date} className="pt-6 pb-4">
                         <h3 className="text-xl font-bold mb-2">{date}</h3>
                         {hasDebit && hasCredit ? (
                             <div className="grid grid-cols-2 gap-52">

@@ -6,7 +6,7 @@ export function AppLayout() {
     return (
         <div>
             <Navbar />
-            <div className='absolute right-4 p-4'><Clock /></div>
+            <div className='absolute right-4 p-4 mb-2'><Clock /></div>
         </div>
     );
 }
