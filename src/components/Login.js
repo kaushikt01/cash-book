@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { login } from './apiServices';
-import Home from './Home';
+import { login } from '../services/ApiServices';
+import { useAuth } from '../utils/AuthContext';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const { setIsLoggedIn } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await login(username, password);
-            console.log(response);
             if (response.status === 200) {
-                <Home />
+                setIsLoggedIn(true); // Update the login state
             }
         } catch (error) {
+            console.error('Login failed:', error);
         }
     };
 

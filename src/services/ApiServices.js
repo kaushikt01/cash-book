@@ -11,3 +11,12 @@ export const login = async (username, password) => {
     throw error;
   }
 };
+
+export const logout = async () => {
+  try {
+      const response = await axios.post(`${API_URL}/logout`, {}, { withCredentials: true });
+      return response;
+  } catch (error) {
+      throw error;
+  }
+};
